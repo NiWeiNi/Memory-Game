@@ -1,7 +1,13 @@
+@font-face {
+    font-family: "openlight";
+    src: url("../fonts/Typo_Round_Light.otf");
+}
+
 html,
 body {
     height: 100%;
     text-align: center;
+    font-family: openlight, sans-serif;
 }
 
 table {

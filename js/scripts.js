@@ -48,12 +48,14 @@ eventListener();
 function cardClass() {
     $("tr").on("click", ".card", function() {
         let cardClass = $(this).attr("class");
-      
     });
     return cardClass;
 }
 
-// Add shown card to variable
+// Source of the image
+function sourceImage(image) {
+    return image.getAttribute('src');
+}
 
 // Add second shown card to variable
 

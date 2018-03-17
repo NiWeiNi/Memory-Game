@@ -23,12 +23,10 @@ table {
 
     transform-style: preserve-3d;
     transition: all 1s ease-in-out;
-
 }
 
-.card:hover {
-    transform: rotateY(180deg);
-}
+/* .card
+    transform: rotateY(180deg); */
 
 .card .side {
     backface-visibility: hidden;

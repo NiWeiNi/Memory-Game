@@ -33,33 +33,103 @@ function layDeck() {
     }
 }
 
+let openCards = [];
+let cards = [];
+let twoCards = [];
 // Add event listener on each card
-function eventListener () {
-    $("tr").on("click", ".card", function(){
-    $(this).css("transform", "rotateY(180deg)");
-    setTimeout(function() { 
-        $(".card").css("transform", "rotateY(0deg)"); }, 2000);
-    });
-}
+function eventListener() {
+    $(".card").on("click", function(event){
+    
+    let targetCardSrc = $(this).children(".face").attr("src");
+    let openCard = $(this);
+    let cardArray = [];
+    
+    let imageOnUse = openCard.children(".face");
+
+    // Add open cards src to array
+    // addOpenCards(targetCardSrc, openCards);
+    addCards(openCard, cards, twoCards);
+    compareCards(twoCards, openCard);
+
+    openCard.css("transform", "rotateY(180deg)");
+    sourceImage(imageOnUse);
+
+})
 
 layDeck();
 eventListener();
 
+
 function cardClass() {
-    $("tr").on("click", ".card", function() {
+    $("tr").on("click", ".card", function(){
         let cardClass = $(this).attr("class");
     });
     return cardClass;
 }
 
-// Source of the image
-function sourceImage(image) {
-    return image.getAttribute('src');
+// Get all the images
+function getImagesArray(){
+    var images = $(".face");
+    return images;
 }
 
-// Add second shown card to variable
+// Source of the image
+function sourceImage(image){
+    console.log(image.attr('src'));
+    return image.attr('src');
+}
+
+// Initialize events
+function initializeEvents(){
+    var cards = getImagesArray();
+    cards.forEach(addThumbClickHandler);
+}
+
+// Add clicked cards src attribute to array
+function addOpenCards(card, array){
+    array.push(card);
+    console.log(array);
+    return array;
+}
+
+
+// Add clicked cards to array
+function addCards(card, array, anotherArray){
+    array.push(card);
+    anotherArray.push(card);
+    console.log(array, anotherArray);
+    return array;
+}
 
 // Check both card
+function compareCards(array, openCard){
+    if (array.length == 2){
+        if (array[0].is(array[1])){
+            console.log("Equal cards");
+        }
+        else if (array[0].children(".face").attr("src")==array[1].children(".face").attr("src")){
+            console.log("Yaaaaah! Matching!");
+            openCard.css("transform", "rotateY(180deg)");
+        }
+        else if (cards[0].children(".face").attr("src") != cards[1].children(".face").attr("src")){
+            console.log("Not equal!");
+            setTimeout(function() { 
+                openCard.css("transform", "rotateY(0deg)"); }, 2000);
+            }
+        }
+    console.log('checking conditional if');
+    }
+    
+    else if (array.length > 2){
+        [].shift.call(array);
+        [].shift.call(array);
+    }
+
+    else {
+        console.log("loop working");
+    }
+}
+
 
 // If both card match let them face up and add them to array
 

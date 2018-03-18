@@ -45,16 +45,18 @@ function eventListener() {
     let cardArray = [];
     
     let imageOnUse = openCard.children(".face");
-
+    openCard.css("transform", "rotateY(180deg)");
     // Add open cards src to array
     // addOpenCards(targetCardSrc, openCards);
     addCards(openCard, cards, twoCards);
-    compareCards(twoCards, openCard);
-
-    openCard.css("transform", "rotateY(180deg)");
     sourceImage(imageOnUse);
-
-})
+    setTimeout(function() { 
+        openCard.css("transform", "rotateY(0deg)"); }, 2000);
+    compareCards(twoCards, openCard);
+   
+   
+    })
+}
 
 layDeck();
 eventListener();
@@ -108,16 +110,13 @@ function compareCards(array, openCard){
             console.log("Equal cards");
         }
         else if (array[0].children(".face").attr("src")==array[1].children(".face").attr("src")){
-            console.log("Yaaaaah! Matching!");
-            openCard.css("transform", "rotateY(180deg)");
+            console.log("Yeaaaaah! Matching!");
+            array[0].css("transform", "rotateY(180deg)");
+            array[1].css("transform", "rotateY(180deg)");
         }
         else if (cards[0].children(".face").attr("src") != cards[1].children(".face").attr("src")){
             console.log("Not equal!");
-            setTimeout(function() { 
-                openCard.css("transform", "rotateY(0deg)"); }, 2000);
-            }
         }
-    console.log('checking conditional if');
     }
     
     else if (array.length > 2){
@@ -130,6 +129,7 @@ function compareCards(array, openCard){
     }
 }
 
+// Set timeout function
 
 // If both card match let them face up and add them to array
 

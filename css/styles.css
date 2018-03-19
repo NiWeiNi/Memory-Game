@@ -3,14 +3,18 @@
     src: url("../fonts/Typo_Round_Light.otf");
 }
 
-html,
 body {
     height: 100%;
     text-align: center;
     font-family: Montserrat, openlight, sans-serif;
 }
 
+h1 {
+
+}
+
 table {
+    height: 100%;
     margin: 0 auto;
     border-spacing: 10px;
 }

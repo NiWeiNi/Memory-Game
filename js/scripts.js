@@ -108,7 +108,7 @@ function compareCards(array, openCard){
         if (array[0].is(array[1])){
             console.log("Equal cards");
             setTimeout(function() { 
-                openCard.css("transform", "rotateY(0deg)"); }, 2000);
+                array[1].css("transform", "rotateY(0deg)"); }, 2000); 
         }
         else if (array.length == 2 &&
             array[0].children(".face").attr("src")==array[1].children(".face").attr("src")){
@@ -120,7 +120,9 @@ function compareCards(array, openCard){
         else if (cards[0].children(".face").attr("src") != cards[1].children(".face").attr("src")){
             console.log("Not equal!");
             setTimeout(function() { 
-                openCard.css("transform", "rotateY(0deg)"); }, 2000);
+                array[0].css("transform", "rotateY(0deg)"); }, 2000);
+            setTimeout(function() { 
+                array[1].css("transform", "rotateY(0deg)"); }, 2000);
         }
     }
     
@@ -128,13 +130,13 @@ function compareCards(array, openCard){
         [].shift.call(array);
         [].shift.call(array);
         setTimeout(function() { 
-            openCard.css("transform", "rotateY(0deg)"); }, 2000); 
+            array[0].css("transform", "rotateY(0deg)"); }, 2000);
     }
 
     else if (array.length < 2){
         console.log("loop working");
         setTimeout(function() { 
-            openCard.css("transform", "rotateY(0deg)"); }, 2000);            
+            array[0].css("transform", "rotateY(0deg)"); }, 2000);
     }
 }
 

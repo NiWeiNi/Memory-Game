@@ -50,8 +50,7 @@ function eventListener() {
     // addOpenCards(targetCardSrc, openCards);
     addCards(openCard, cards, twoCards);
     sourceImage(imageOnUse);
-    setTimeout(function() { 
-        openCard.css("transform", "rotateY(0deg)"); }, 2000);
+
     compareCards(twoCards, openCard);
    
    
@@ -103,29 +102,39 @@ function addCards(card, array, anotherArray){
     return array;
 }
 
-// Check both card
+// Check both open cards
 function compareCards(array, openCard){
     if (array.length == 2){
         if (array[0].is(array[1])){
             console.log("Equal cards");
+            setTimeout(function() { 
+                openCard.css("transform", "rotateY(0deg)"); }, 2000);
         }
-        else if (array[0].children(".face").attr("src")==array[1].children(".face").attr("src")){
+        else if (array.length == 2 &&
+            array[0].children(".face").attr("src")==array[1].children(".face").attr("src")){
             console.log("Yeaaaaah! Matching!");
             array[0].css("transform", "rotateY(180deg)");
             array[1].css("transform", "rotateY(180deg)");
+            return console.log('done');
         }
         else if (cards[0].children(".face").attr("src") != cards[1].children(".face").attr("src")){
             console.log("Not equal!");
+            setTimeout(function() { 
+                openCard.css("transform", "rotateY(0deg)"); }, 2000);
         }
     }
     
     else if (array.length > 2){
         [].shift.call(array);
         [].shift.call(array);
+        setTimeout(function() { 
+            openCard.css("transform", "rotateY(0deg)"); }, 2000); 
     }
 
-    else {
+    else if (array.length < 2){
         console.log("loop working");
+        setTimeout(function() { 
+            openCard.css("transform", "rotateY(0deg)"); }, 2000);            
     }
 }
 

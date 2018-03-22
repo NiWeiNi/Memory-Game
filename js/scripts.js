@@ -53,7 +53,6 @@ function eventListener() {
 
     compareCards(twoCards, openCard);
    
-   
     })
 }
 
@@ -61,12 +60,6 @@ layDeck();
 eventListener();
 
 
-function cardClass() {
-    $("tr").on("click", ".card", function(){
-        let cardClass = $(this).attr("class");
-    });
-    return cardClass;
-}
 
 // Get all the images
 function getImagesArray(){
@@ -120,23 +113,20 @@ function compareCards(array, openCard){
         else if (cards[0].children(".face").attr("src") != cards[1].children(".face").attr("src")){
             console.log("Not equal!");
             setTimeout(function() { 
-                array[0].css("transform", "rotateY(0deg)"); }, 2000);
+                array[0].css("transform", "rotateY(0deg)"); }, 1000); 
             setTimeout(function() { 
-                array[1].css("transform", "rotateY(0deg)"); }, 2000);
+                array[1].css("transform", "rotateY(0deg)"); }, 1000); 
         }
     }
     
     else if (array.length > 2){
         [].shift.call(array);
         [].shift.call(array);
-        setTimeout(function() { 
-            array[0].css("transform", "rotateY(0deg)"); }, 2000);
     }
 
     else if (array.length < 2){
         console.log("loop working");
-        setTimeout(function() { 
-            array[0].css("transform", "rotateY(0deg)"); }, 2000);
+
     }
 }
 

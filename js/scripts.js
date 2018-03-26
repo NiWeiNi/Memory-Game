@@ -6,7 +6,7 @@ const cardFront = document.querySelectorAll(".card-front");
 const cardBack = document.querySelectorAll(".card-back");
 const star = document.querySelectorAll(".fa-star");
 const winner = document.querySelector(".win-popup");
-let gameRound = 2;
+let round = 2;
 let moves = 0;
 let seconds, minutes, prevSrc, pairs, stars, currentTime, clock;
 
@@ -22,12 +22,12 @@ document.querySelector(".deck").addEventListener("click", function(event) {
         if (!front.classList.contains("front-inactive")) {
             front.classList.add("front-inactive");
             back.classList.add("back-active");
-            gameRound -= 1;
+            round -= 1;
         }
 
         // Two cards are opened
-        if (gameRound == 0) {
-            gameRound = 2;
+        if (round == 0) {
+            round = 2;
             moves += 1;
             document.querySelector(".moves").innerHTML = "Moves: " + moves;
 
@@ -55,15 +55,15 @@ document.querySelector(".deck").addEventListener("click", function(event) {
     } 
 });
 
-// document.querySelector(".deck").addEventListener("click", function(event) { 
-//     event.target.style.background = "red";
-// });
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+function shuffle(shuffleCards) {
+    let array = [];
+    for (let i = 0; i < shuffleCards.length; i++) {
+        array[i] = shuffleCards[i].src;
+    }
 
+    let currentIndex = array.length, temporaryValue, randomIndex;
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -72,14 +72,21 @@ function shuffle(array) {
         array[randomIndex] = temporaryValue;
     }
 
-    return array;
+    for (let i = 0; i < shuffleCards.length; i++) {
+        shuffleCards[i].src = array[i];
+    }
 }
 
-// function to hide no matching cards
+// Function to hide no matching cards
 function flipBack(cardOne, cardTwo) {
     if (cardOne.classList.contains("front-inactive") && cardTwo.classList.contains("back-active")) {
         cardOne.classList.remove("front-inactive");
         cardTwo.classList.remove("back-active");
         click = true;
     }
+}
+
+// Initialize game
+function startGame() {
+    shuffle(document.querySelectorAll("img"));
 }

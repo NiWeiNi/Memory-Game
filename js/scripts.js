@@ -48,7 +48,7 @@ document.querySelector(".deck").addEventListener("click", function(event) {
                 pairs -= 1;
                 if (pairs == 0) {
                     winPop.classList.remove("popup-hidden");
-                    document.querySelector(".moves-number").innerHTML = moves;
+                    document.querySelector(".moves-number").innerHTML = "<strong>" + moves + "</strong>";
                     document.querySelector(".end-time").innerHTML = "<strong>" + currentTime + "</strong>";
                     stopTime();
                 }
@@ -91,7 +91,7 @@ function hideCircle() {
         circles = 0;
         circle[0].classList.add("fontawesome-");
     }
-    document.querySelector(".number-circles").innerHTML = circles;
+    document.querySelector(".number-circles").innerHTML = "<strong>" + circles + "</strong>";
 }
 
 // Counter

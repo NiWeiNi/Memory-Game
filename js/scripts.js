@@ -65,13 +65,13 @@ $(".deck").on('click touchstart', function(event) {
 });
 
 // Add event listener to replay button
-document.querySelector(".replay").addEventListener("click", function() {
+$(".replay").on("click touchstart", function() {
     winPop.classList.add("popup-hidden");
     startGame();
 });
 
 // Restart game once click on restart icon
-document.querySelector(".restart").addEventListener("click", function() {
+$(".restart").on("click touchstart", function() {
     startGame();
 });
 
@@ -91,7 +91,7 @@ function hideCircle() {
         circles = 0;
         circle[0].classList.add("fontawesome-");
     }
-    document.querySelector(".number-circles").innerHTML = "<strong>" + circles + "</strong>";
+    $(".number-circles").innerHTML = "<strong>" + circles + "</strong>";
 }
 
 // Counter

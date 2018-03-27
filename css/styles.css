@@ -1,3 +1,6 @@
+
+/* General layout */
+
 html {
     box-sizing: border-box;
   }
@@ -31,11 +34,6 @@ body {
     height: 100%;
 }
 
-.margin-left {
-    width: 10%;
-    margin: 0;
-}
-
 .header {
     text-align: center;
 }
@@ -43,10 +41,7 @@ body {
 .left-side {
     display: flex;
     flex-direction: column;
-    width: 50%;
-    text-align: center;
     align-items: center;
-    margin: 0;
 }
 
 .header h1 {
@@ -54,8 +49,7 @@ body {
     margin: 10px 0;
 }
 
-
-/* Game settings */
+/* Score panel */
 
 .score-panel {
     width: 50%;
@@ -98,12 +92,12 @@ body {
     align-content: center;
     background-color: #4b06061a;
     border-radius: 8px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
 
 .card {
     position: relative;
-    perspective: 400px;
+    perspective: 300px;
     cursor: pointer;
     transition: all 0.5s;
 }
@@ -114,11 +108,11 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 20px;
+    padding: 10px;
     backface-visibility: hidden;
     border-radius: 7px;
     transition: all 0.5s;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 }
 
 .card-front {
@@ -128,6 +122,11 @@ body {
 
 .card-back {
     transform: rotateY(180deg);
+}
+
+.card-back img {
+    max-width: 100%;
+    height: auto;
 }
 
 .fontawesome- {
@@ -233,7 +232,20 @@ body {
 /* Media queries */
 
 @media screen and (max-width: 426px) {
-    body {
-        background-image: none;
+    .layer {
+        display: none;
     }
+    
+    .margin-left {
+        display: none;
+    }
+
+    .header h1 {
+        font-size: 1.4em;
+        margin: 15px 0;
+    }
+}
+
+@media screen and (min-width: 427px) and (max-width: 950px) {
+    
 }

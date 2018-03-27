@@ -3,7 +3,7 @@ const imgSrc = ["../img/santa_0.svg", "../img/church_0.svg", "../img/degree_proj
                 "../img/ice_city_0.svg", "../img/inspiration_hotel_0.svg", "../img/la_hotel_0.svg", "../img/youth_camp_0.svg"]
 const cardFront = document.querySelectorAll(".card-front");
 const cardBack = document.querySelectorAll(".card-back");
-const circle = document.querySelectorAll(".fontawesome-circle");
+const circle = document.querySelectorAll(".fa-circle");
 const winPop = document.querySelector(".win-popup");
 let moves = 0;
 let seconds, minutes, pairs, circles, currentTime, clock, round, startFlag;
@@ -12,7 +12,7 @@ let seconds, minutes, pairs, circles, currentTime, clock, round, startFlag;
 startGame();
 
 // Add event listener on cards
-document.querySelector(".deck").addEventListener("click", function(event) {
+document.querySelector(".deck").addEventListener("click touchstart", function(event) {
     const front = event.target;
     const back = event.target.nextElementSibling;
 
@@ -65,13 +65,13 @@ document.querySelector(".deck").addEventListener("click", function(event) {
 });
 
 // Add event listener to replay button
-document.querySelector(".replay").addEventListener("click", function() {
+document.querySelector(".replay").addEventListener("click touchstart", function() {
     winPop.classList.add("popup-hidden");
     startGame();
 });
 
 // Restart game once click on restart icon
-document.querySelector(".restart").addEventListener("click", function() {
+document.querySelector(".restart").addEventListener("click touchstart", function() {
     startGame();
 });
 

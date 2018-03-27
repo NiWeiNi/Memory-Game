@@ -1,109 +1,245 @@
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+
+/* fontawesome */
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
 html {
     box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
+  }
+  
+  *,
+  *::before,
+  *::after {
     box-sizing: inherit;
-}
+  }
 
-html,
 body {
-    width: 100%;
+    display: flex;
     height: 100%;
     margin: 0;
     padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    background-image: url(../img/santa_0.svg);
+    background-repeat: no-repeat;
+    background-position: bottom -300px right -200px;
+    background-attachment: fixed;
+    background-size: 65%;
 }
 
-body {
-    font-family: 'Coda', cursive;
+.layer {
+    background-color: rgba(255, 255, 255, 0.15);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
-.container {
+.margin-left {
+    width: 10%;
+    margin: 0;
+}
+
+.header {
+    text-align: center;
+}
+
+.left-side {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-}
-
-h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-}
-
-/*
- * Styles for the deck of cards
- */
-
-.deck {
-    width: 660px;
-    min-height: 680px;
-    padding: 32px;
-    border: 3px solid black;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    width: 50%;
+    text-align: center;
     align-items: center;
-    margin: 0 0 3em;
+    margin: 0;
 }
 
-.deck .card {
-    height: 125px;
-    width: 125px;
-    background: #2e3d49;
-    font-size: 0;
-    color: #ffffff;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+.header h1 {
+    font-size: 2em;
+    margin: 10px 0;
 }
 
-.deck .card.open {
-    transform: rotateY(0);
-    background: #02b3e4;
-    cursor: default;
-}
 
-.deck .card.show {
-    font-size: 33px;
-}
-
-.deck .card.match {
-    cursor: default;
-    background: #02ccba;
-    font-size: 33px;
-}
-
-/*
- * Styles for the Score Panel
- */
+/* Game settings */
 
 .score-panel {
-    text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
 }
 
-.score-panel .stars {
+.circles-ranking {
+    list-style-type: none;
+    display: flex;
     margin: 0;
     padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
+    color: #793236;
 }
 
-.score-panel .stars li {
-    list-style: none;
-    display: inline-block;
+.circles-ranking li + li {
+    padding-left: 8px;
 }
 
-.score-panel .restart {
-    float: right;
+.restart {
     cursor: pointer;
+    border: none;
+    background-color: transparent;
+    z-index: 1;
 }
 
+/* Game cards */
+
+.deck {
+    margin: 20px auto;
+    padding: 20px;
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(4, 120px);
+    grid-template-rows: repeat(4, 120px);
+    grid-gap: 15px;
+    justify-content: center;
+    align-content: center;
+    background-color: #4b06061a;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card {
+    position: relative;
+    perspective: 400px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.card-side {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    backface-visibility: hidden;
+    border-radius: 7px;
+    transition: all 0.5s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-front {
+    background-image: url(../img/card_back.svg);
+    background-color: white;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+.fontawesome- {
+    color: #a50b132f;
+}
+
+/* Win popup */
+
+.win-popup {
+    margin: 0 auto;
+    font-size: 1em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: all 0.4s;
+    text-align: center;
+    color: #333;
+}
+
+.winner-title {
+    padding: 30px 0 10px;
+    font-size: 1.6em;
+}
+
+.winner-details {
+    padding-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.replay {
+    font-size: 1em;
+    padding: 7px 20px;
+    border: none;
+    background-color: transparent;
+    transition: all 0.3s;
+}
+
+.replay:hover {
+    cursor: pointer;
+    color: #793236;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.popup-hidden {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+}
+
+/* Interactive elements */
+
+.front-inactive {
+    transform: rotateY(-180deg);
+  }
+
+.back-active {
+    transform: rotateY(0);
+    background-color: white;
+}
+
+.matched {
+    animation: cardMatch 0.5s;
+    background-color: white;
+}
+
+@-webkit-keyframes cardMatch {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes cardMatch {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+
+        transform: scale(1);
+    }
+}
+
+/* Media queries */
+
+@media screen and (max-width: 426px) {
+    body {
+        background-image: none;
+    }
+}

@@ -3,10 +3,10 @@ const imgSrc = ["../img/santa_0.svg", "../img/church_0.svg", "../img/degree_proj
                 "../img/ice_city_0.svg", "../img/inspiration_hotel_0.svg", "../img/la_hotel_0.svg", "../img/youth_camp_0.svg"]
 const cardFront = document.querySelectorAll(".card-front");
 const cardBack = document.querySelectorAll(".card-back");
-const star = document.querySelectorAll(".fa-star");
+const circle = document.querySelectorAll(".fontawesome-circle");
 const winPop = document.querySelector(".win-popup");
 let moves = 0;
-let seconds, minutes, pairs, stars, currentTime, clock, round;
+let seconds, minutes, pairs, circles, currentTime, clock, round, startFlag;
 
 // Initialize game
 startGame();
@@ -18,7 +18,12 @@ document.querySelector(".deck").addEventListener("click", function(event) {
 
     // Check if clicked card is opened or not
     if (front.nodeName === "DIV" && front.classList.contains("card-front")) {
-        checkStart();
+        // Check first click to start counter
+        if (startFlag) {
+            showTime();
+        }
+
+        startFlag = false;
         
         // Open clicked card
         if (!front.classList.contains("front-inactive")) {
@@ -44,13 +49,13 @@ document.querySelector(".deck").addEventListener("click", function(event) {
                 if (pairs == 0) {
                     winPop.classList.remove("popup-hidden");
                     document.querySelector(".moves-number").innerHTML = moves;
-                    document.querySelector(".end-time").innerHTML = currentTime;
+                    document.querySelector(".end-time").innerHTML = "<strong>" + currentTime + "</strong>";
                     stopTime();
                 }
             }
         }
 
-        hideStars();
+        hideCircle();
 
         // Assign previous clicked cards to new variables to compare
         prevSrc = back.firstElementChild.src;
@@ -65,23 +70,28 @@ document.querySelector(".replay").addEventListener("click", function() {
     startGame();
 });
 
+// Restart game once click on restart icon
+document.querySelector(".restart").addEventListener("click", function() {
+    startGame();
+});
 
-// Minus stars according to number of moves
-function hideStars() {
+
+// Minus circle according to number of moves
+function hideCircle() {
     switch(moves) {
         case 16:
-        stars = 2;
-        star[2].classList.add("minus-star");
+        circles = 2;
+        circle[2].classList.add("fontawesome-");
         break;
         case 24:
-        stars = 1;
-        star[1].classList.add("minus-star");
+        circles = 1;
+        circle[1].classList.add("fontawesome-");
         break;
         case 30:
-        stars = 0;
-        star[0].classList.add("minus-star");
+        circles = 0;
+        circle[0].classList.add("fontawesome-");
     }
-    document.querySelector(".stars-ranking").innerHTML = stars;
+    document.querySelector(".number-circles").innerHTML = circles;
 }
 
 // Counter
@@ -91,8 +101,6 @@ function counter() {
         seconds = 0;
         minutes += 1;
     }
-    currentTime = (minutes > 0 ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-    document.querySelector(".timer").innerHTML = currentTime;
 }
 
 // Stop counter
@@ -100,33 +108,26 @@ function stopTime() {
     clearTimeout(clock);
 }
 
-// Check first click on card to start counter
-function checkStart() {
-    if (moves === 0) {
-        clock = setTimeout(counter, 1000);
-    }
-}
-
-// Count every second and update clock timer at score panel
+//set timer
 function counter() {
     seconds++;
-    updateTime();
-
-    // Call itself in 1 second to update time again
-    timer = setTimeout(counter, 1000);
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes += 1;
+    }
+    currentTime = (minutes > 0 ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+    document.querySelector(".timer").textContent = currentTime;
+    showTime();
 }
 
-// Show current time at score panel
-function updateTime() {
-    clock.textContent = elapsedTime();
+function showTime() {
+    clock = setTimeout(counter, 1000);
+} 
+
+function stopTime() {
+    clearTimeout(clock);
 }
 
-// Format time value to 'mm:ss' format
-function elapsedTime() {
-    const min = Math.floor(seconds / 60);
-    const sec = seconds % 60;
-    return ((min < 10) ? "0" + min : min) + ":" + ((sec < 10) ? "0" + sec : sec);
-}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(shuffleCards) {
@@ -165,15 +166,25 @@ function startGame() {
     pairs = 8;
     seconds = 0;
     minutes = 0;
-    stars = 3;
+    circles = 3;
+    startFlag = true;
+    changeBack(imgSrc);
     document.querySelector(".timer").innerHTML = "00:00";
     stopTime();
     shuffle(document.querySelectorAll("img"));
     document.querySelector(".moves").innerHTML ="Moves: " + moves;
+    circle[0].classList.remove("fontawesome-");
+    circle[1].classList.remove("fontawesome-");
+    circle[2].classList.remove("fontawesome-");
 
     for (let i = 0; i < cardFront.length; i++) {
         cardBack[i].classList.remove("card-match");
         flipBack(cardFront[i], cardBack[i]);
     }
+}
+
+// Change background randomly with every restart
+function changeBack(imgSrc) {
+    document.body.style.backgroundImage = "url(" + imgSrc[Math.floor(Math.random() * imgSrc.length)] + ")";
 }
 

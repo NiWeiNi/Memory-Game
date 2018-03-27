@@ -12,7 +12,7 @@ let seconds, minutes, pairs, circles, currentTime, clock, round, startFlag;
 startGame();
 
 // Add event listener on cards
-document.querySelector(".deck").addEventListener("click touchstart", function(event) {
+$(".deck").on('click touchstart', function(event) {
     const front = event.target;
     const back = event.target.nextElementSibling;
 
@@ -65,13 +65,13 @@ document.querySelector(".deck").addEventListener("click touchstart", function(ev
 });
 
 // Add event listener to replay button
-document.querySelector(".replay").addEventListener("click touchstart", function() {
+document.querySelector(".replay").addEventListener("click", function() {
     winPop.classList.add("popup-hidden");
     startGame();
 });
 
 // Restart game once click on restart icon
-document.querySelector(".restart").addEventListener("click touchstart", function() {
+document.querySelector(".restart").addEventListener("click", function() {
     startGame();
 });
 

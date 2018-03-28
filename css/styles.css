@@ -91,6 +91,7 @@ body {
     background-color: transparent;
     z-index: 1;
     font-size: 1em;
+    -webkit-transition: all 0.4s;
     transition: all 0.4s;
 }
 
@@ -142,6 +143,7 @@ body {
             backface-visibility: hidden;
     border-radius: 7px;
     -webkit-transition: all 0.5s;
+    -webkit-transition: all 0.6s;
     transition: all 0.6s;
     -webkit-box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
             box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
@@ -174,10 +176,12 @@ body {
     font-size: 1em;
     position: fixed;
     top: 25%;
-    left: 10%;
-    width: 80%;
-    height: 50%;
+    left: 20%;
+    width: 60%;
+    height: 35%;
     z-index: 1;
+    border: solid 1px #793236;
+    border-radius: 20px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -185,7 +189,7 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.712);
+    background-color: rgba(255, 255, 255, 0.9);
     text-align: center;
 }
 
@@ -193,6 +197,7 @@ body {
     font-size: 1em;
     border: none;
     background-color: transparent;
+    -webkit-transition: all 0.4s;
     transition: all 0.4s;
 }
 
@@ -223,14 +228,16 @@ body {
 }
 
 .matched {
-            animation: cardMatch 0.8s;
+            -webkit-animation: cardMatch 0.8s;
+                    animation: cardMatch 0.8s;
     background-color: white;
 }
 
 
-@keyframes cardMatch {
+@-webkit-keyframes cardMatch {
     0% {
-                transform: scale(.5);
+                -webkit-transform: scale(.5);
+                        transform: scale(.5);
     }
 
     50% {
@@ -238,7 +245,25 @@ body {
     }
 
     100% {
-                transform: scale(1);
+                -webkit-transform: scale(1);
+                        transform: scale(1);
+    }
+}
+
+
+@keyframes cardMatch {
+    0% {
+                -webkit-transform: scale(.5);
+                        transform: scale(.5);
+    }
+
+    50% {
+        background-color: #793236;
+    }
+
+    100% {
+                -webkit-transform: scale(1);
+                        transform: scale(1);
     }
 }
 

@@ -6,50 +6,56 @@ let seconds, pairs, round, moves, timer, circles;
 // Initialize game
 startGame();
 
-// Add event listener on cards
 $(".deck").on("click touchstart", function(event) {
     const cardFront = $(event.target);
-    const cardBack = cardFront.next();
+    const cardBack = cardFront.next(".back");
 
-    // Check first click to start counter
+    // First click on card to start counter
     if (seconds == 0) {
         counter();
     }
-    
-    // Open card face up
-    if (!cardFront.hasClass("inactive")) {
+
+    // Check card for class up or down
+    if  (!cardFront.hasClass("inactive")) {
         cardFront.addClass("inactive");
         cardBack.addClass("active");
-        round -= 1;
+        round += 1;
     }
 
     // Two cards face up
-    if (round == 0) {
-        round = 2;
+    if (round == 2) {
+        round = 0;
         moves += 1;
         $(".moves").text("Moves: " + moves);
 
-        // Compares two opened cards
+        //Compares two opened cards
         if (prevSrc !== cardBack.children().attr("src")) {
             setTimeout(flipBack, 1000, cardFront, cardBack);
             setTimeout(flipBack, 1000, prevFront, prevBack); 
-        } else {
+        } 
+        
+        else {
             cardBack.addClass("matched");
             prevBack.addClass("matched");
             pairs -= 1;
+
             if (pairs == 0) {
                 endGame();
             }
-        }
+        }   
     }
-
+    
     // Assign previous clicked cards to new variables to compare
     prevSrc = cardBack.children().attr("src");
     prevFront = cardFront;
     prevBack = cardBack;
 
     shadowCircle();
-    
+});
+
+// Avoid event listeners on images
+$('img').click(function(event){
+    event.stopPropagation();
 });
 
 // Add event listener to replay button
@@ -132,7 +138,7 @@ function flipBack(cardOne, cardTwo) {
 
 // Start the game resetting any previous state
 function startGame() {
-    round = 2;
+    round = 0;
     moves = 0;
     pairs = 8;
     seconds = 0;

@@ -8,6 +8,7 @@ all, but there is a rating system, where you get:
 - 1 circle if you use 16 moves.
 - 2 circles if takes you 12 moves or more.
 - 3 circles if you use less than 12 moves.
+
 To start it is quite straighforward, just click on one card and the timer will start. To restart just hit the replay button or refresh
 the page.
 

@@ -2,13 +2,15 @@
 /* General layout */
 
 html {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
   }
   
   *,
   *::before,
   *::after {
-    box-sizing: inherit;
+    -webkit-box-sizing: inherit;
+            box-sizing: inherit;
   }
 
 body {
@@ -38,9 +40,16 @@ body {
 }
 
 .left-side {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .header h1 {
@@ -51,14 +60,20 @@ body {
 /* Score panel */
 
 .score-panel {
-    width: 50%;
+    width: 25%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 
 
 .circles-ranking {
     list-style-type: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin: 3px 0 0 0;
     padding: 0;
@@ -88,17 +103,23 @@ body {
     grid-template-columns: repeat(4, 120px);
     grid-template-rows: repeat(4, 120px);
     grid-gap: 15px;
-    justify-content: center;
-    align-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
     background-color: #4b06061a;
     border-radius: 8px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
 
 .card {
     position: relative;
-    perspective: 300px;
+    -webkit-perspective: 300px;
+            perspective: 300px;
     cursor: pointer;
+    -webkit-transition: all 0.5s;
     transition: all 0.5s;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     -webkit-tap-highlight-color: transparent;
@@ -111,19 +132,29 @@ body {
     width: 100%;
     height: 100%;
     padding: 10px;
-    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
     border-radius: 7px;
+    -webkit-transition: all 0.5s;
     transition: all 0.5s;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
 }
 
 .card-front {
     background-image: url(../img/card_back.svg);
     background-color: white;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
 }
 
 .card-back {
-    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
 }
 
 .fontawesome- {
@@ -141,11 +172,21 @@ body {
     width: 100%;
     height: 100vh;
     z-index: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     background-color: rgba(255, 255, 255, 0.712);
+    -webkit-transition: all 0.4s;
     transition: all 0.4s;
     text-align: center;
 }
@@ -165,6 +206,7 @@ body {
     padding: 7px 20px;
     border: none;
     background-color: transparent;
+    -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
 
@@ -184,45 +226,55 @@ body {
 /* Interactive elements */
 
 .front-inactive {
-    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
   }
 
 .back-active {
-    transform: rotateY(0);
+    -webkit-transform: rotateY(0);
+            transform: rotateY(0);
     background-color: white;
 }
 
 .matched {
-    animation: cardMatch 0.5s;
+    -webkit-animation: cardMatch 0.5s;
+            animation: cardMatch 0.5s;
     background-color: white;
 }
 
 @-webkit-keyframes cardMatch {
     0% {
-        transform: scale(1);
+        -webkit-transform: scale(1);
+                transform: scale(1);
     }
 
     50% {
-        transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+                transform: scale(1.2);
     }
 
     100% {
-        transform: scale(1);
+        -webkit-transform: scale(1);
+                transform: scale(1);
     }
 }
 
 @keyframes cardMatch {
     0% {
-        transform: scale(1);
+        -webkit-transform: scale(1);
+                transform: scale(1);
     }
 
     50% {
-        transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+                transform: scale(1.2);
     }
 
     100% {
 
-        transform: scale(1);
+        -webkit-transform: scale(1);
+
+                transform: scale(1);
     }
 }
 
@@ -242,5 +294,22 @@ body {
     
     .score-panel {
         width: 80%;
+    }
+}
+
+@media screen and (min-width: 426px) and (max-width: 1200px) {
+
+    body {
+        background-position: bottom -250px right -375px;
+        background-size: 80%;
+    }
+    
+    .header h1 {
+        font-size: 1.2em;
+        padding: 20px 0;
+    }
+    
+    .score-panel {
+        width: 40%;
     }
 }

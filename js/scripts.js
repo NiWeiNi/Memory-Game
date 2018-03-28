@@ -148,7 +148,7 @@ function startGame() {
     shuffle($("img"));
     $(".moves").text("Moves: " + moves);
     $(".fa-circle").removeClass("fontawesome-");
-    $(".back").removeClass("card-match");
+    $(".back").removeClass("matched");
     flipBack($(".front"), $(".back"));
 }
 

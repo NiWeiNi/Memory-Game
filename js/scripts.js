@@ -87,11 +87,11 @@ function hideCircle() {
         circles = 1;
         circle[1].classList.add("fontawesome-");
         break;
-        case 30:
+        case 32:
         circles = 0;
         circle[0].classList.add("fontawesome-");
     }
-    $(".number-circles").innerHTML = "<strong>" + circles + "</strong>";
+    document.querySelector(".number-circles").innerHTML = "<strong>" + circles + "</strong>";
 }
 
 // Counter

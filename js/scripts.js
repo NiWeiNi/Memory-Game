@@ -16,9 +16,9 @@ $(".deck").on("click touchstart", function(event) {
     }
 
     // Check card for class up or down
-    if  (!cardFront.hasClass("inactive")) {
-        cardFront.addClass("inactive");
-        cardBack.addClass("active");
+    if  (!cardFront.hasClass("down")) {
+        cardFront.addClass("down");
+        cardBack.addClass("up");
         round += 1;
     }
 
@@ -130,9 +130,9 @@ function shuffle(shuffleCards) {
 
 // Function to hide no matching cards
 function flipBack(cardOne, cardTwo) {
-    if ($(cardOne).hasClass("inactive") && $(cardTwo).hasClass("active")) {
-        $(cardOne).removeClass("inactive");
-        $(cardTwo).removeClass("active");
+    if ($(cardOne).hasClass("down") && $(cardTwo).hasClass("up")) {
+        $(cardOne).removeClass("down");
+        $(cardTwo).removeClass("up");
     }
 }
 

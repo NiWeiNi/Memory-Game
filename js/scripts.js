@@ -1,7 +1,6 @@
 // Set variables
 const imgSrc = ["../img/santa_0.svg", "../img/church_0.svg", "../img/degree_project_0.svg", "../img/hospital_0.svg",
                 "../img/ice_city_0.svg", "../img/inspiration_hotel_0.svg", "../img/la_hotel_0.svg", "../img/youth_camp_0.svg"];
-const circle = $(".fa-circle");
 let seconds, pairs, round, moves, timer, circles;
 
 // Initialize game
@@ -86,18 +85,19 @@ function stopTime() {
 
 // Minus circle according to number of moves
 function shadowCircle() {
+    const circle = $(".fa-circle");
     switch(moves) {
         case 12:
         circles = 2;
-        circle[2].classList.add("fontawesome-");
+        circle[circles].classList.add("fontawesome-");
         break;
         case 16:
         circles = 1;
-        circle[1].classList.add("fontawesome-");
+        circle[circles].classList.add("fontawesome-");
         break;
         case 24:
         circles = 0;
-        circle[0].classList.add("fontawesome-");
+        circle[circles].classList.add("fontawesome-");
     }
 }
 
@@ -141,7 +141,7 @@ function startGame() {
     stopTime();
     shuffle($("img"));
     $(".moves").text("Moves: " + moves);
-    circle.removeClass("fontawesome-");
+    $(".fa-circle").removeClass("fontawesome-");
 
     for (let i = 0; i < $(".front").length; i++) {
         $(".back")[i].classList.remove("card-match");

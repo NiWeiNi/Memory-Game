@@ -93,16 +93,12 @@ function stopTime() {
 function shadowCircle() {
     const circle = $(".fa-circle");
     switch(moves) {
-        case 12:
+        case 14:
         circles = 2;
         circle[circles].classList.add("fontawesome-");
         break;
-        case 16:
+        case 20:
         circles = 1;
-        circle[circles].classList.add("fontawesome-");
-        break;
-        case 24:
-        circles = 0;
         circle[circles].classList.add("fontawesome-");
     }
 }

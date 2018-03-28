@@ -142,11 +142,8 @@ function startGame() {
     shuffle($("img"));
     $(".moves").text("Moves: " + moves);
     $(".fa-circle").removeClass("fontawesome-");
-
-    for (let i = 0; i < $(".front").length; i++) {
-        $(".back")[i].classList.remove("card-match");
-        flipBack($(".front")[i], $(".back")[i]);
-    }
+    $(".back").removeClass("card-match");
+    flipBack($(".front"), $(".back"));
 }
 
 // Display stats at end

@@ -91,6 +91,12 @@ body {
     background-color: transparent;
     z-index: 1;
     font-size: 1em;
+    transition: all 0.4s;
+}
+
+.restart:hover {
+   font-size: 1.2em;
+   color: #793236;
 }
 
 /* Game cards */
@@ -136,7 +142,7 @@ body {
             backface-visibility: hidden;
     border-radius: 7px;
     -webkit-transition: all 0.5s;
-    transition: all 0.5s;
+    transition: all 0.6s;
     -webkit-box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
             box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
     -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -167,10 +173,10 @@ body {
     margin: 0 auto;
     font-size: 1em;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
+    top: 25%;
+    left: 10%;
+    width: 80%;
+    height: 50%;
     z-index: 1;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -179,35 +185,15 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
     background-color: rgba(255, 255, 255, 0.712);
-    -webkit-transition: all 0.4s;
-    transition: all 0.4s;
     text-align: center;
-}
-
-.winner-title {
-    padding: 30px 0 10px;
-    font-size: 1.6em;
-}
-
-.winner-details {
-    padding-bottom: 10px;
-    font-size: 1.2em;
 }
 
 .replay {
     font-size: 1em;
-    padding: 7px 20px;
     border: none;
     background-color: transparent;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
+    transition: all 0.4s;
 }
 
 .replay:hover {
@@ -237,43 +223,21 @@ body {
 }
 
 .matched {
-    -webkit-animation: cardMatch 0.5s;
-            animation: cardMatch 0.5s;
+            animation: cardMatch 0.8s;
     background-color: white;
 }
 
-@-webkit-keyframes cardMatch {
-    0% {
-        -webkit-transform: scale(1);
-                transform: scale(1);
-    }
-
-    50% {
-        -webkit-transform: scale(1.2);
-                transform: scale(1.2);
-    }
-
-    100% {
-        -webkit-transform: scale(1);
-                transform: scale(1);
-    }
-}
 
 @keyframes cardMatch {
     0% {
-        -webkit-transform: scale(1);
-                transform: scale(1);
+                transform: scale(.5);
     }
 
     50% {
-        -webkit-transform: scale(1.2);
-                transform: scale(1.2);
+        background-color: #793236;
     }
 
     100% {
-
-        -webkit-transform: scale(1);
-
                 transform: scale(1);
     }
 }

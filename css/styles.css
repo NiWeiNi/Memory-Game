@@ -3,20 +3,18 @@
 
 html {
     box-sizing: border-box;
-}
+  }
   
   *,
   *::before,
   *::after {
     box-sizing: inherit;
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-}
+  }
 
 body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
     font-family: 'Montserrat', sans-serif;
     font-size: 1em;
     background-image: url();
@@ -39,9 +37,10 @@ body {
     text-align: center;
 }
 
-.content {
-    max-width: 570px;
-    margin: 0 auto;
+.left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .header h1 {
@@ -49,17 +48,14 @@ body {
     margin: 10px 0;
 }
 
-.score-deck {
-    padding: 5px;
-}
-
 /* Score panel */
 
 .score-panel {
+    width: 50%;
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
 }
+
 
 .circles-ranking {
     list-style-type: none;
@@ -233,5 +229,18 @@ body {
 /* Media queries */
 
 @media screen and (max-width: 426px) {
+
+    body {
+        background-position: bottom -150px right -350px;
+        background-size: 150%;
+    }
     
+    .header h1 {
+        font-size: 1.2em;
+        padding: 20px 0;
+    }
+    
+    .score-panel {
+        width: 80%;
+    }
 }

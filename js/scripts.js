@@ -1,10 +1,9 @@
 // Set variables
 const imgSrc = ["../img/santa_0.svg", "../img/church_0.svg", "../img/degree_project_0.svg", "../img/hospital_0.svg",
                 "../img/ice_city_0.svg", "../img/inspiration_hotel_0.svg", "../img/la_hotel_0.svg", "../img/youth_camp_0.svg"]
-const cardFront = document.querySelectorAll(".card-front");
-const cardBack = document.querySelectorAll(".card-back");
-const circle = document.querySelectorAll(".fa-circle");
-const winPop = document.querySelector(".win-popup");
+const cardFront = $(".card-front");
+const cardBack = $(".card-back");
+const circle = $(".fa-circle");
 let moves = 0;
 let seconds, minutes, pairs, circles, currentTime, clock, round, startFlag;
 
@@ -47,9 +46,9 @@ $(".deck").on('click touchstart', function(event) {
                 prevBack.classList.add("matched");
                 pairs -= 1;
                 if (pairs == 0) {
-                    winPop.classList.remove("popup-hidden");
-                    document.querySelector(".moves-number").innerHTML = "<strong>" + moves + "</strong>";
-                    document.querySelector(".end-time").innerHTML = "<strong>" + currentTime + "</strong>";
+                    $(".win-popup").removeClass("popup-hidden");
+                    $(".moves-number").text(moves);
+                    $(".end-time").text(currentTime);
                     stopTime();
                 }
             }
@@ -66,7 +65,7 @@ $(".deck").on('click touchstart', function(event) {
 
 // Add event listener to replay button
 $(".replay").on("click touchstart", function() {
-    winPop.classList.add("popup-hidden");
+    $(".win-popup").addClass("popup-hidden");
     startGame();
 });
 
@@ -79,15 +78,15 @@ $(".restart").on("click touchstart", function() {
 // Minus circle according to number of moves
 function hideCircle() {
     switch(moves) {
-        case 16:
+        case 12:
         circles = 2;
         circle[2].classList.add("fontawesome-");
         break;
-        case 24:
+        case 16:
         circles = 1;
         circle[1].classList.add("fontawesome-");
         break;
-        case 32:
+        case 24:
         circles = 0;
         circle[0].classList.add("fontawesome-");
     }
@@ -116,7 +115,7 @@ function counter() {
         minutes += 1;
     }
     currentTime = (minutes > 0 ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-    document.querySelector(".timer").textContent = currentTime;
+    $(".timer").text(currentTime);
     showTime();
 }
 
@@ -169,10 +168,10 @@ function startGame() {
     circles = 3;
     startFlag = true;
     changeBack(imgSrc);
-    document.querySelector(".timer").innerHTML = "00:00";
+    $(".timer").text("00:00");
     stopTime();
     shuffle(document.querySelectorAll("img"));
-    document.querySelector(".moves").innerHTML ="Moves: " + moves;
+    $(".moves").text("Moves: " + moves);
     circle[0].classList.remove("fontawesome-");
     circle[1].classList.remove("fontawesome-");
     circle[2].classList.remove("fontawesome-");

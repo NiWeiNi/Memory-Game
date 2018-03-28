@@ -1,33 +1,30 @@
 // Set variables
 const imgSrc = ["../img/santa_0.svg", "../img/church_0.svg", "../img/degree_project_0.svg", "../img/hospital_0.svg",
-                "../img/ice_city_0.svg", "../img/inspiration_hotel_0.svg", "../img/la_hotel_0.svg", "../img/youth_camp_0.svg"]
-const cardFront = $(".card-front");
-const cardBack = $(".card-back");
+                "../img/ice_city_0.svg", "../img/inspiration_hotel_0.svg", "../img/la_hotel_0.svg", "../img/youth_camp_0.svg"];
 const circle = $(".fa-circle");
-let moves = 0;
-let seconds, minutes, pairs, circles, currentTime, clock, round, startFlag;
+let seconds, pairs, round, moves, timer;
 
 // Initialize game
 startGame();
 
 // Add event listener on cards
-$(".deck").on('click touchstart', function(event) {
+$(".deck").on("click touchstart", function(event) {
     const front = event.target;
     const back = event.target.nextElementSibling;
+    
 
     // Check if clicked card is opened or not
-    if (front.nodeName === "DIV" && front.classList.contains("card-front")) {
-        // Check first click to start counter
-        if (startFlag) {
-            showTime();
-        }
+    if (front.nodeName === "DIV" && front.classList.contains("front")) {
 
-        startFlag = false;
+        // Check first click to start counter
+        if (seconds == 0) {
+            counter();
+        }
         
         // Open clicked card
-        if (!front.classList.contains("front-inactive")) {
-            front.classList.add("front-inactive");
-            back.classList.add("back-active");
+        if (!front.classList.contains("inactive")) {
+            front.classList.add("inactive");
+            back.classList.add("active");
             round -= 1;
         }
 
@@ -48,13 +45,13 @@ $(".deck").on('click touchstart', function(event) {
                 if (pairs == 0) {
                     $(".win-popup").removeClass("popup-hidden");
                     $(".moves-number").text(moves);
-                    $(".end-time").text(currentTime);
+                    $(".end-time").text(timeElapsed());
                     stopTime();
                 }
             }
         }
 
-        hideCircle();
+        shadowCircle();
 
         // Assign previous clicked cards to new variables to compare
         prevSrc = back.firstElementChild.src;
@@ -69,14 +66,15 @@ $(".replay").on("click touchstart", function() {
     startGame();
 });
 
-// Restart game once click on restart icon
+// Restart game click on restart icon
 $(".restart").on("click touchstart", function() {
     startGame();
 });
 
 
 // Minus circle according to number of moves
-function hideCircle() {
+function shadowCircle() {
+    let circles;
     switch(moves) {
         case 12:
         circles = 2;
@@ -90,41 +88,27 @@ function hideCircle() {
         circles = 0;
         circle[0].classList.add("fontawesome-");
     }
-    document.querySelector(".number-circles").innerHTML = "<strong>" + circles + "</strong>";
-}
-
-// Counter
-function counter() {
-    seconds++;
-    if (seconds >= 60) {
-        seconds = 0;
-        minutes += 1;
-    }
+    $(".number-circles").text(circles);
 }
 
 // Stop counter
 function stopTime() {
-    clearTimeout(clock);
+    clearTimeout(timer);
 }
 
-//set timer
+// Count time in seconds
 function counter() {
     seconds++;
-    if (seconds >= 60) {
-        seconds = 0;
-        minutes += 1;
-    }
-    currentTime = (minutes > 0 ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-    $(".timer").text(currentTime);
-    showTime();
+    $(".timer").text(timeElapsed());
+    timer = setTimeout(counter, 1000);
 }
 
-function showTime() {
-    clock = setTimeout(counter, 1000);
-} 
-
-function stopTime() {
-    clearTimeout(clock);
+// Display time in seconds and minutes and display it
+function timeElapsed() {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    let timeElapsed = (mins < 10 ? "0" + mins : mins) + ":" + (secs < 10 ? "0" + secs : secs);
+    return timeElapsed;
 }
 
 
@@ -152,9 +136,9 @@ function shuffle(shuffleCards) {
 
 // Function to hide no matching cards
 function flipBack(cardOne, cardTwo) {
-    if (cardOne.classList.contains("front-inactive") && cardTwo.classList.contains("back-active")) {
-        cardOne.classList.remove("front-inactive");
-        cardTwo.classList.remove("back-active");
+    if (cardOne.classList.contains("inactive") && cardTwo.classList.contains("active")) {
+        cardOne.classList.remove("inactive");
+        cardTwo.classList.remove("active");
     }
 }
 
@@ -164,21 +148,16 @@ function startGame() {
     moves = 0;
     pairs = 8;
     seconds = 0;
-    minutes = 0;
-    circles = 3;
-    startFlag = true;
     changeBack(imgSrc);
     $(".timer").text("00:00");
     stopTime();
-    shuffle(document.querySelectorAll("img"));
+    shuffle($("img"));
     $(".moves").text("Moves: " + moves);
-    circle[0].classList.remove("fontawesome-");
-    circle[1].classList.remove("fontawesome-");
-    circle[2].classList.remove("fontawesome-");
+    circle.removeClass("fontawesome-");
 
-    for (let i = 0; i < cardFront.length; i++) {
-        cardBack[i].classList.remove("card-match");
-        flipBack(cardFront[i], cardBack[i]);
+    for (let i = 0; i < $(".front").length; i++) {
+        $(".back")[i].classList.remove("card-match");
+        flipBack($(".front")[i], $(".back")[i]);
     }
 }
 

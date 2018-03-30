@@ -1,6 +1,6 @@
 // Set variables
-const imgSrc = ["../img/santa_0.svg", "../img/church_0.svg", "../img/degree_project_0.svg", "../img/hospital_0.svg",
-                "../img/ice_city_0.svg", "../img/inspiration_hotel_0.svg", "../img/la_hotel_0.svg", "../img/youth_camp_0.svg"];
+const imgSrc = ["img/santa_0.svg", "img/church_0.svg", "img/degree_project_0.svg", "img/hospital_0.svg",
+                "img/ice_city_0.svg", "img/inspiration_hotel_0.svg", "img/la_hotel_0.svg", "img/youth_camp_0.svg"];
 let seconds, pairs, round, moves, timer, circles;
 
 // Initialize game
